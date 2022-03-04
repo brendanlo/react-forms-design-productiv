@@ -12,7 +12,7 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo() {
+function EditableTodo({todo, update, remove}) {
 
   /** Toggle if this is being edited */
   function toggleEdit() { }
@@ -28,7 +28,8 @@ function EditableTodo() {
 
                 EITHER
 
-                <TodoForm />
+                <TodoForm initialFormData = { todo }
+                          handleSave = {handleSave}/>
 
                 OR
 
@@ -45,7 +46,7 @@ function EditableTodo() {
                       Del
                     </button>
                   </div>
-                  <Todo />
+                  <Todo todo = {todo}/>
                 </div>
 
       </div>
