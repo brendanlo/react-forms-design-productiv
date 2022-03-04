@@ -17,4 +17,5 @@ describe("Footer", function () {
     expect(result).toMatchSnapshot();
   })
 
+  
 });
