@@ -16,9 +16,9 @@ import TodoForm from "./TodoForm";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
-  // set up states
-  const [todos, setTodos] = useState([]);
+function TodoApp({ initialTodos }) {
+  /** set up state */
+  const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
   function create(newTodo) {
@@ -40,7 +40,6 @@ function TodoApp() {
   return (
     <main className="TodoApp">
       <div className="row">
-
         <div className="col-md-6">
           {(todos.length > 0)
             ? < EditableTodoList
@@ -63,7 +62,7 @@ function TodoApp() {
             <TodoForm initialFormData={{
               title: "",
               description: "",
-              priority: ""
+              priority: 1
             }} handleSave={create} />
           </section>
         </div>

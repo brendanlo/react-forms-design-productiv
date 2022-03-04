@@ -7,29 +7,33 @@ import React, { useState } from "react";
  * - initialFormData
  * - handleSave: function to call in parent.
  *
+ * State:
+ * - formData: {title: "do laundry", 
+ *              description: "use washer and dryer", 
+ *              priority:1}
+ * 
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
 function TodoForm({ initialFormData, handleSave }) {
-
+  /** useState */
   const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(formData => ({ ...formData, [name]: value }));
-   }
+  }
 
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSave(formData);
     setFormData(initialFormData);
-   }
+  }
 
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
-
       <div className="mb-3">
         <input
           id="newTodo-title"

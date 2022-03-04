@@ -4,11 +4,14 @@ import TodoForm from "./TodoForm";
 
 /** Show editable todo item.
  *
- * Props
+ * Props:
  * - todo
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
  *
+ * State:
+ * - isEditing: boolean, whether the todo has an edit form open
+ * 
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
@@ -24,12 +27,14 @@ function EditableTodo({ todo, update, remove }) {
   /** Call remove fn passed to this. */
   function handleDelete() {
     remove(todo.id);
-   }
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
+  // NOTE: How do we set an edit form as saved?
   function handleSave(formData) {
-    update(formData)
-   }
+    setIsEditing(!isEditing);
+    update(formData);
+  }
 
   return (
     <div className="EditableTodo">
