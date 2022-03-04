@@ -21,7 +21,7 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Toggle if this is being edited */
   function toggleEdit() {
-    setIsEditing(!isEditing);
+    setIsEditing(() => !isEditing);
   }
 
   /** Call remove fn passed to this. */
@@ -30,33 +30,34 @@ function EditableTodo({ todo, update, remove }) {
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  // NOTE: How do we set an edit form as saved?
   function handleSave(formData) {
-    setIsEditing(!isEditing);
+    setIsEditing(false);
     update(formData);
   }
 
   return (
     <div className="EditableTodo">
-      {isEditing ?
-        (<TodoForm initialFormData={todo}
-          handleSave={handleSave} />) :
-
-        (<div className="mb-3">
-          <div className="float-end text-sm-end">
-            <button
-              className="EditableTodo-toggle btn-link btn btn-sm"
-              onClick={toggleEdit}>
-              Edit
-            </button>
-            <button
-              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-              onClick={handleDelete}>
-              Del
-            </button>
-          </div>
-          <Todo todo={todo} />
-        </div>)}
+      {isEditing
+        ? (
+          <TodoForm
+            initialFormData={todo}
+            handleSave={handleSave} />)
+        : (
+          <div className="mb-3">
+            <div className="float-end text-sm-end">
+              <button
+                className="EditableTodo-toggle btn-link btn btn-sm"
+                onClick={toggleEdit}>
+                Edit
+              </button>
+              <button
+                className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+                onClick={handleDelete}>
+                Del
+              </button>
+            </div>
+            <Todo todo={todo} />
+          </div>)}
     </div>
   );
 }
